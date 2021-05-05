@@ -6,12 +6,12 @@ import json
 import requests
 from typing import List
 from bs4 import BeautifulSoup
-from models import Course
-from geocode import geocode
+from scripts.models import Course
+from scripts.geocode import geocode
 
 
 LIST_URL = "https://golf.com/travel/courses/best-public-golf-courses-top-100-you-can-play-2020-21/"
-DEFAULT_FILE = "data.json"
+DEFAULT_FILE = os.path.join("..", "data", "data.json")
 
 
 def parse_resp(html) -> List[Course]:
@@ -22,11 +22,11 @@ def parse_resp(html) -> List[Course]:
 
 def parse_course(course_div) -> Course:
     details = course_div.select_one("div.top100-featured-item__ranking-block")
-    title = details.select_one("h3.top100-featured-item__title").get_text().split()
+    title = details.select_one("h3.top100-featured-item__title").get_text().split('. ')
     location = details.select_one("div.top100-featured-item__location > span:nth-of-type(2)").get_text().split(', ')
     specs = details.select("div.top100-featured-item__specs div.top100-featured-item__spec-text")
 
-    rank = int(title[0][:-1])  # strip "."
+    rank = int(title[0])
     name = title[1]
     city = location[0]
     state = location[1] if len(location) > 1 else "" 

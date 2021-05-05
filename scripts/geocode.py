@@ -2,7 +2,7 @@
 
 import os
 import sys
-from models import Course, Location
+from scripts.models import Course, Location
 import requests
 
 

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Golf.com's Top 100 Courses</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <style type="text/css">
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #map {
+            height: 100%;
+          }
+
+          /* Optional: Makes the sample page fill the window. */
+          html,
+          body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+
+          .course-image {
+                width: 100%;
+                height: 12em;
+                background-size: cover;
+                background-position: center;
+                display: inline-block;
+          }
+          .course-data {
+            font-size: 12px;
+          }
+          .course-title {
+                text-align: center;
+                padding: 0.2em 0;
+                border-bottom: solid 1px darkgrey;
+                margin-bottom: 0.8em;
+          }
+        </style>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script type="text/javascript">
+            let map;
+
+            function initMap() {
+                const map_center = { lat: 39.8283, lng: -98.5795 };
+
+                map = new google.maps.Map(document.getElementById("map"), {
+                  center: map_center,
+                  zoom: 4,
+                });
+
+                $.getJSON("data/data.json", function(courses) {
+                    var markers = [];
+
+                    $.each(courses, function(i, course) {
+                        const infowindow = new google.maps.InfoWindow({
+                            content: build_tooltip(course)
+                        });
+
+                        const marker = new google.maps.Marker({
+                            position: {
+                                lat: course.detailed_location.lat,
+                                lng: course.detailed_location.lng
+                            },
+                            map,
+                            title: course.course_name,
+                        });
+                        markers.push(marker);
+
+                        marker.addListener("click", () => {
+                            infowindow.open(map, marker);
+                        });
+                    })
+
+                    new MarkerClusterer(map, markers, {
+                        imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                    });
+                })
+            }
+
+
+            function build_tooltip(course) {
+                // parse unicode
+                var description = decodeURIComponent(course.description);
+
+                return `
+                <div style="width: 17em;">
+                    <div class="course-data">
+                    <div class="course-image" style="background-image: url('${course.img_url}')"></div>
+                        <h4 class="course-title">${course.course_name} (#${course.rank})</h4>
+                        <dl>
+                            <dt>Address</dt>
+                            <dd>${course.detailed_location.address}</dd>
+                            <dt>Architect</dt>
+                            <dd>${course.architect}</dd>
+                            <dt>Year Built</dt>
+                            <dd>${course.year_built}</dd>
+                            <dt>Description</dt>
+                            <dd>${description}</dd>
+                        </dl>
+                    </div>
+                </div>
+                `
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="map"></div>
+
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZSrZNIi6dK5jh4JgNzIP0C9ETYosjnRM&callback=initMap&libraries=&v=weekly" async></script>
+    </body>
+</html>

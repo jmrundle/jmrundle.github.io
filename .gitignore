@@ -1,5 +1,7 @@
 __pycache__
-venv
-*.pyc
-data.json
+.idea
+
 .env
+venv
+
+*.pyc
