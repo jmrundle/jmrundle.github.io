@@ -26,13 +26,16 @@
                 display: inline-block;
           }
           .course-data {
-            font-size: 12px;
+            font-size: 20px;
           }
           .course-title {
                 text-align: center;
                 padding: 0.2em 0;
                 border-bottom: solid 1px darkgrey;
                 margin-bottom: 0.8em;
+          }
+          dd {
+              margin-bottom: 1em;
           }
         </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -84,10 +87,10 @@
                 var description = decodeURIComponent(course.description);
 
                 return `
-                <div style="width: 17em;">
+                <div>
                     <div class="course-data">
                     <div class="course-image" style="background-image: url('${course.img_url}')"></div>
-                        <h4 class="course-title">${course.course_name} (#${course.rank})</h4>
+                        <h2 class="course-title">${course.course_name} (#${course.rank})</h4>
                         <dl>
                             <dt>Address</dt>
                             <dd>${course.detailed_location.address}</dd>
