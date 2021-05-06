@@ -9,14 +9,14 @@
     "year_built": 1919,
     "description": "The first great American public oceanside course, Pebble benefits from an ingenious routing that brings the player right to the ocean's edge, then away into the woods, then back again. Even today, no more thrilling, spectacular stretch exists than holes 4 through 10. Does anything in golf compare with that final stroll up the par-5 18th as it curves left around Carmel Bay? Hard for a course this well known to exceed first time expectations \u2014 but it does, which is a true feat. Max fee: $575, resort guest; $620, non-resort guest. (Photo: Evan Schiller)",
     "detailed_location": {
-      "address": "Pebble Beach, Del Monte Forest, CA, USA",
-      "lat": 36.5725286,
-      "lng": -121.9485937
+      "address": "Pebble Beach, Del Monte Forest, CA 93953, USA",
+      "lat": 36.5666274,
+      "lng": -121.9474556
     }
   },
   {
     "rank": 2,
-    "course_name": "Pinehurst (No",
+    "course_name": "Pinehurst (No. 2)",
     "city": "Village of Pinehurst",
     "state": "NC",
     "img_url": "https://golf.com/wp-content/uploads/2020/04/Pinehurst-2-15H-092213-0763-_.jpg",
@@ -376,7 +376,7 @@
   },
   {
     "rank": 26,
-    "course_name": "Pinehurst (No",
+    "course_name": "Pinehurst (No. 4)",
     "city": "Pinehurst",
     "state": "NC",
     "img_url": "https://golf.com/wp-content/uploads/2020/10/Pinehurst-4-Hole-2\uf022-5-1.jpg",
@@ -834,9 +834,9 @@
     "year_built": 2018,
     "description": "Ever see a square green? It\u2019s a rare but cool architectural quirk that Dana Fry introduces on the 1st hole on the newbie South course and repeats numerous times throughout; other defining features include narrow cross-bunkers and spacious fairways on an essentially treeless site. It\u2019s a bit like stepping back in time even though the course debuted just three years ago. You\u2019ll be helped and hurt by breezes blowing off Lake Michigan just to the west, with firm and fast conditions emphasizing the ground game. The longest par-4 (the 491-yard 4th) is also the toughest despite heading downhill. On the two par-3s (the 5th and 12th), long is better than short, or else your ball will trundle backward off steep false fronts. Enjoy the panoramic view from the 15th tee. Max fee: $220 (Photo: Patrick Koenig)",
     "detailed_location": {
-      "address": "14710 Northwood Hwy, Arcadia, MI 49613, USA",
-      "lat": 44.456655,
-      "lng": -86.24252
+      "address": "13637 Northwood Hwy, Bear Lake, MI 49614, USA",
+      "lat": 44.4360096,
+      "lng": -86.2139076
     }
   },
   {
@@ -1278,7 +1278,7 @@
     "rank": 86,
     "course_name": "Chileno Bay",
     "city": "Rancho El Tule",
-    "state": "Cabo San Lucas",
+    "state": "Cabo San Lucas, BCS CP",
     "img_url": "https://golf.com/wp-content/uploads/2021/04/Chileno-Bay-t1cycp.jpg",
     "architect": "Tom Fazio",
     "year_built": 2014,
@@ -1366,7 +1366,7 @@
   },
   {
     "rank": 92,
-    "course_name": "Cog Hill (No",
+    "course_name": "Cog Hill (No. 4)",
     "city": "Lemont",
     "state": "IL",
     "img_url": "https://golf.com/wp-content/uploads/2021/04/cog-hill.jpg",
@@ -1398,7 +1398,7 @@
     "rank": 94,
     "course_name": "Blackhawk",
     "city": "Spruce Grove",
-    "state": "Alberta",
+    "state": "Alberta, Canada",
     "img_url": "https://golf.com/wp-content/uploads/2021/04/blackhawk.jpg",
     "architect": "Rod Whitman",
     "year_built": 2003,

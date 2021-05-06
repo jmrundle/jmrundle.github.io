@@ -6,12 +6,12 @@ import json
 import requests
 from typing import List
 from bs4 import BeautifulSoup
-from scripts.models import Course
-from scripts.geocode import geocode
+from models import Course
+from geocode import geocode_courses
 
 
 LIST_URL = "https://golf.com/travel/courses/best-public-golf-courses-top-100-you-can-play-2020-21/"
-DEFAULT_FILE = os.path.join("..", "data", "data.json")
+DEFAULT_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "data.json")
 
 
 def parse_resp(html) -> List[Course]:
@@ -22,8 +22,8 @@ def parse_resp(html) -> List[Course]:
 
 def parse_course(course_div) -> Course:
     details = course_div.select_one("div.top100-featured-item__ranking-block")
-    title = details.select_one("h3.top100-featured-item__title").get_text().split('. ')
-    location = details.select_one("div.top100-featured-item__location > span:nth-of-type(2)").get_text().split(', ')
+    title = details.select_one("h3.top100-featured-item__title").get_text().split('. ', 1)
+    location = details.select_one("div.top100-featured-item__location > span:nth-of-type(2)").get_text().split(', ', 1)
     specs = details.select("div.top100-featured-item__specs div.top100-featured-item__spec-text")
 
     rank = int(title[0])
@@ -41,11 +41,6 @@ def parse_course(course_div) -> Course:
     return Course(rank, name, city, state, img_url, architect, year_built, descr)
 
 
-def geocode_courses(courses):
-    for c in courses:
-        c.detailed_location = geocode(c)
-
-
 def save_courses(courses, out_stream):
     data = [ c.to_dict() for c in courses ]
     print(json.dumps(data, indent=2), file=out_stream)
@@ -53,15 +48,18 @@ def save_courses(courses, out_stream):
 
 def main():
     out_file   = DEFAULT_FILE
+    replace    = False
     do_geocode = False
 
     for arg in sys.argv[1:]:
         if arg == '-g':
             do_geocode = True
+        elif arg == '-f':
+            replace = True
         else:
             out_file = arg
 
-    if os.path.exists(out_file):
+    if os.path.exists(out_file) and not replace:
         print("Output file already exists", file=sys.stderr)
         sys.exit(1)
 
